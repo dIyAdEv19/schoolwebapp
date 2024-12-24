@@ -1,0 +1,441 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Student Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <style>
+        .hover-grow:hover {
+            transform: scale(1.05);
+        }
+        .hover-shadow:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .sidebar {
+            transition: transform 0.3s ease-in-out;
+        }
+        .sidebar-hidden {
+            transform: translateX(-100%);
+        }
+        .active {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+        }
+        .card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+        }
+        .wave {
+            display: inline-block;
+            animation: wave-animation 2s infinite;
+            transform-origin: 70% 70%;
+        }
+        @keyframes wave-animation {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            30% { transform: rotate(14deg); }
+            40% { transform: rotate(-4deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-yellow-200 to-pink-200 min-h-screen flex flex-col font-poppins">
+    <div class="flex flex-col md:flex-row flex-1 fade-in">
+        <!-- Sidebar -->
+        <div id="sidebar" class="bg-gradient-to-b from-yellow-500 to-pink-500 w-full md:w-16 p-2 flex flex-col items-center sidebar">
+            <div class="flex flex-col space-y-4 text-white w-full">
+                <div class="flex flex-col items-center p-2 hover:bg-yellow-600 cursor-pointer rounded transition-colors duration-300" id="userIcon">
+                    <i class="fas fa-user-circle text-2xl"></i>
+                    <span class="text-xs mt-1 text-center">Profile</span>
+                </div>
+                <div class="flex flex-col items-center p-2 hover:bg-yellow-600 cursor-pointer rounded transition-colors duration-300" id="bookIcon">
+                    <i class="fas fa-book text-2xl"></i>
+                    <span class="text-xs mt-1 text-center">Courses</span>
+                </div>
+                <div class="flex flex-col items-center p-2 hover:bg-yellow-600 cursor-pointer rounded transition-colors duration-300" id="clipboardIcon">
+                    <i class="fas fa-clipboard-list text-2xl"></i>
+                    <span class="text-xs mt-1 text-center">Work</span>
+                </div>
+                <div class="flex flex-col items-center p-2 hover:bg-yellow-600 cursor-pointer rounded transition-colors duration-300" id="videoIcon">
+                    <i class="fas fa-video text-2xl"></i>
+                    <span class="text-xs mt-1 text-center">Videos</span>
+                </div>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <div class="flex-1 p-4">
+            <button id="toggleSidebar" class="md:hidden bg-yellow-600 text-white px-4 py-2 rounded mb-4">
+                Toggle Sidebar
+            </button>
+            <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                <!-- Left Section -->
+                <div id="mainContent" class="bg-white p-6 rounded-lg flex-1 shadow-lg hover-shadow transition-shadow duration-300">
+                    <h1 class="text-4xl font-extrabold mb-6 text-center text-gray-800">
+                        Hi, <span class="wave">👋</span> [Student Name]
+                    </h1>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-gradient-to-r from-green-200 to-blue-200 p-6 rounded-lg shadow-md relative hover-grow transition-transform duration-300 card">
+                            <span class="bg-white px-2 py-1 rounded absolute -top-3 -left-3 font-semibold">
+                                Courses
+                            </span>
+                            <table class="mt-6 w-full text-left text-gray-700">
+                                <thead>
+                                    <tr>
+                                        <th class="py-2">Course</th>
+                                        <th class="py-2">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="py-2">Mathematics</td>
+                                        <td class="py-2">Enrolled</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2">Science</td>
+                                        <td class="py-2">Enrolled</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2">English</td>
+                                        <td class="py-2">Enrolled</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="bg-gradient-to-r from-green-200 to-blue-200 p-6 rounded-lg shadow-md relative hover-grow transition-transform duration-300 card">
+                            <span class="bg-white px-2 py-1 rounded absolute -top-3 -left-3 font-semibold">
+                                Attendance
+                            </span>
+                            <span class="bg-red-500 text-white text-xs px-2 py-1 rounded-full absolute top-2 right-2">
+                                848
+                            </span>
+                            <table class="mt-6 w-full text-left text-gray-700">
+                                <thead>
+                                    <tr>
+                                        <th class="py-2">Status</th>
+                                        <th class="py-2">Percentage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="py-2">Present</td>
+                                        <td class="py-2">80%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2">Absent</td>
+                                        <td class="py-2">20%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="bg-gradient-to-r from-green-200 to-blue-200 p-6 rounded-lg shadow-md relative hover-grow transition-transform duration-300 card">
+                            <span class="bg-white px-2 py-1 rounded absolute -top-3 -left-3 font-semibold">
+                                Assignment
+                            </span>
+                            <table class="mt-6 w-full text-left text-gray-700">
+                                <thead>
+                                    <tr>
+                                        <th class="py-2">Assignment</th>
+                                        <th class="py-2">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="py-2">Math Homework</td>
+                                        <td class="py-2">Pending</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2">Science Project</td>
+                                        <td class="py-2">Completed</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="bg-gradient-to-r from-green-200 to-blue-200 p-6 rounded-lg shadow-md relative hover-grow transition-transform duration-300 card">
+                            <span class="bg-white px-2 py-1 rounded absolute -top-3 -left-3 font-semibold">
+                                Videos
+                            </span>
+                            <table class="mt-6 w-full text-left text-gray-700">
+                                <thead>
+                                    <tr>
+                                        <th class="py-2">Lecture</th>
+                                        <th class="py-2">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="py-2">Lecture 1</td>
+                                        <td class="py-2">Watched</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2">Lecture 2</td>
+                                        <td class="py-2">Pending</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2">Lecture 3</td>
+                                        <td class="py-2">Pending</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="bg-gradient-to-r from-green-200 to-blue-200 p-6 rounded-lg shadow-md relative hover-grow transition-transform duration-300 card">
+                            <span class="bg-white px-2 py-1 rounded absolute -top-3 -left-3 font-semibold">
+                                Fees
+                            </span>
+                            <table class="mt-6 w-full text-left text-gray-700">
+                                <thead>
+                                    <tr>
+                                        <th class="py-2">Type</th>
+                                        <th class="py-2">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="py-2">Due</td>
+                                        <td class="py-2">$500</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2">Paid</td>
+                                        <td class="py-2">$1500</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Section -->
+                <div class="bg-white p-6 rounded-lg flex-1 shadow-lg hover-shadow transition-shadow duration-300">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">
+                            Calendar
+                        </h2>
+                        <i class="fas fa-bell text-2xl text-gray-700 hover:text-gray-900 cursor-pointer hover-grow transition-transform duration-300"></i>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-r from-green-200 to-blue-200 p-6 rounded-lg shadow-md relative hover-grow transition-transform duration-300 card">
+                            <span class="bg-white px-2 py-1 rounded absolute -top-3 -left-3 font-semibold">
+                                Holidays
+                            </span>
+                            <table class="mt-6 w-full text-left text-gray-700">
+                                <thead>
+                                    <tr>
+                                        <th class="py-2">Holiday</th>
+                                        <th class="py-2">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="py-2">Christmas</td>
+                                        <td class="py-2">25 Dec</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2">New Year</td>
+                                        <td class="py-2">1 Jan</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="bg-gradient-to-r from-green-200 to-blue-200 p-6 rounded-lg shadow-md relative hover-grow transition-transform duration-300 card">
+                            <span class="bg-white px-2 py-1 rounded absolute -top-3 -left-3 font-semibold">
+                                Quiz &amp; test
+                            </span>
+                            <table class="mt-6 w-full text-left text-gray-700">
+                                <thead>
+                                    <tr>
+                                        <th class="py-2">Quiz/Test</th>
+                                        <th class="py-2">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="py-2">Math Quiz</td>
+                                        <td class="py-2">15 Jan</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2">Science Test</td>
+                                        <td class="py-2">20 Jan</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="bg-gradient-to-r from-green-200 to-blue-200 p-6 rounded-lg shadow-md relative hover-grow transition-transform duration-300 card">
+                            <span class="bg-white px-2 py-1 rounded absolute -top-3 -left-3 font-semibold">
+                                Quick support
+                            </span>
+                            <table class="mt-6 w-full text-left text-gray-700">
+                                <thead>
+                                    <tr>
+                                        <th class="py-2">Contact</th>
+                                        <th class="py-2">Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="py-2">Support</td>
+                                        <td class="py-2">support@school.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Calendar -->
+                        <div class="bg-gradient-to-r from-green-200 to-blue-200 p-6 rounded-lg shadow-md relative hover-grow transition-transform duration-300 card">
+                            <span class="bg-white px-2 py-1 rounded absolute -top-3 -left-3 font-semibold">
+                                Calendar
+                            </span>
+                            <div class="mt-4">
+                                <table class="w-full text-center">
+                                    <thead>
+                                        <tr>
+                                            <th class="py-2">Sun</th>
+                                            <th class="py-2">Mon</th>
+                                            <th class="py-2">Tue</th>
+                                            <th class="py-2">Wed</th>
+                                            <th class="py-2">Thu</th>
+                                            <th class="py-2">Fri</th>
+                                            <th class="py-2">Sat</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="py-2">1</td>
+                                            <td class="py-2">2</td>
+                                            <td class="py-2">3</td>
+                                            <td class="py-2">4</td>
+                                            <td class="py-2">5</td>
+                                            <td class="py-2">6</td>
+                                            <td class="py-2">7</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2">8</td>
+                                            <td class="py-2">9</td>
+                                            <td class="py-2">10</td>
+                                            <td class="py-2">11</td>
+                                            <td class="py-2">12</td>
+                                            <td class="py-2">13</td>
+                                            <td class="py-2">14</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2">15</td>
+                                            <td class="py-2">16</td>
+                                            <td class="py-2">17</td>
+                                            <td class="py-2">18</td>
+                                            <td class="py-2">19</td>
+                                            <td class="py-2">20</td>
+                                            <td class="py-2">21</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2">22</td>
+                                            <td class="py-2">23</td>
+                                            <td class="py-2">24</td>
+                                            <td class="py-2">25</td>
+                                            <td class="py-2">26</td>
+                                            <td class="py-2">27</td>
+                                            <td class="py-2">28</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2">29</td>
+                                            <td class="py-2">30</td>
+                                            <td class="py-2">31</td>
+                                            <td class="py-2"></td>
+                                            <td class="py-2"></td>
+                                            <td class="py-2"></td>
+                                            <td class="py-2"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-yellow-500 to-pink-500 p-4 flex justify-between items-center">
+        <span class="text-xl font-bold text-white">
+            TIGER CUB PRE-PRIMARY SCHOOL
+        </span>
+        <img alt="Tiger Cubs Preschool logo" class="rounded-full hover-grow transition-transform duration-300" height="50" src="https://img.icons8.com/ios-filled/50/000000/school.png"/>
+    </footer>
+
+    <script>
+        document.getElementById('toggleSidebar').addEventListener('click', function () {
+            document.getElementById('sidebar').classList.toggle('sidebar-hidden');
+        });
+    
+        const icons = document.querySelectorAll('.sidebar div');
+        icons.forEach(icon => {
+            icon.addEventListener('click', function () {
+                // Remove 'active' class from all icons
+                icons.forEach(i => i.classList.remove('active'));
+                // Add 'active' class to the clicked icon
+                this.classList.add('active');
+    
+                // Determine content based on the clicked icon
+                const section = this.getAttribute('id').replace('Icon', '');
+                let content = '';
+                switch (section) {
+                    case 'user':
+                        content = `
+                            <h1 class="text-3xl font-bold mb-6 text-gray-800">Profile Section</h1>
+                            <p class="text-gray-700">Name: John Doe</p>
+                            <p class="text-gray-700">Email: john.doe@example.com</p>
+                            <p class="text-gray-700">Class: 5th Grade</p>
+                        `;
+                        break;
+                    case 'book':
+                        content = `
+                            <h1 class="text-3xl font-bold mb-6 text-gray-800">Book Section</h1>
+                            <p class="text-gray-700">Ebook: Maths</p>
+                            <p class="text-gray-700">PDF: <a href="link" target="_blank">Download</a></p>
+                        `;
+                        break;
+                    case 'assignment':
+                        content = `
+                            <h1 class="text-3xl font-bold mb-6 text-gray-800">Assignment Section</h1>
+                            <p class="text-gray-700">Completed: 4</p>
+                            <p class="text-gray-700">Pending: 5</p>
+                        `;
+                        break;
+                    case 'fee':
+                        content = `
+                            <h1 class="text-3xl font-bold mb-6 text-gray-800">Fee Section</h1>
+                            <p class="text-gray-700">Fee Amount: 10,000</p>
+                            <p class="text-gray-700">Paid: 2 semesters</p>
+                            <p class="text-gray-700">Unpaid: 3rd semester</p>
+                        `;
+                        break;
+                    default:
+                        content = `
+                            <h1 class="text-3xl font-bold mb-6 text-gray-800">VIDEO LINKS</h1>
+                            <p class="text-gray-700">video</p>
+                        `;
+                        break;
+                }
+    
+                // Update the main content area
+                document.getElementById('mainContent').innerHTML = content;
+            });
+        });
+    </script>
+    
+                            
